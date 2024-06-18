@@ -13,3 +13,4 @@ toml==0.10.2
 pydantic[dotenv]~=1.10
 elastic-apm==6.18.0
 appdirs==1.4.4
+urllib3>=2.2.2 # not directly required, pinned by Snyk to avoid a vulnerability

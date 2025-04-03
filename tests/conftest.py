@@ -26,25 +26,25 @@ def truffle_project(tmp_path):
             "testdata", "truffle_project", "artifacts.tar.gz"
         )
     ) as f:
+
         def is_within_directory(directory, target):
-            
+
             abs_directory = os.path.abspath(directory)
             abs_target = os.path.abspath(target)
-        
+
             prefix = os.path.commonprefix([abs_directory, abs_target])
-            
+
             return prefix == abs_directory
-        
+
         def safe_extract(tar, path=".", members=None, *, numeric_owner=False):
-        
+
             for member in tar.getmembers():
                 member_path = os.path.join(path, member.name)
                 if not is_within_directory(path, member_path):
                     raise Exception("Attempted Path Traversal in Tar File")
-        
-            tar.extractall(path, members, numeric_owner=numeric_owner) 
-            
-        
+
+            tar.extractall(path, members, numeric_owner=numeric_owner)
+
         safe_extract(f, tmp_path)
 
     for artifact_path in Path(tmp_path).joinpath("build", "contracts").glob("*.json"):
@@ -87,25 +87,25 @@ def hardhat_fuzzing_lessons_project(tmp_path):
             "testdata", "hardhat_fuzzing_lessons_project", "artifacts.tar.gz"
         )
     ) as f:
+
         def is_within_directory(directory, target):
-            
+
             abs_directory = os.path.abspath(directory)
             abs_target = os.path.abspath(target)
-        
+
             prefix = os.path.commonprefix([abs_directory, abs_target])
-            
+
             return prefix == abs_directory
-        
+
         def safe_extract(tar, path=".", members=None, *, numeric_owner=False):
-        
+
             for member in tar.getmembers():
                 member_path = os.path.join(path, member.name)
                 if not is_within_directory(path, member_path):
                     raise Exception("Attempted Path Traversal in Tar File")
-        
-            tar.extractall(path, members, numeric_owner=numeric_owner) 
-            
-        
+
+            tar.extractall(path, members, numeric_owner=numeric_owner)
+
         safe_extract(f, tmp_path)
     os.chdir(tmp_path)
 
@@ -143,25 +143,25 @@ def hardhat_project(tmp_path):
             "testdata", "hardhat_project", "artifacts.tar.gz"
         )
     ) as f:
+
         def is_within_directory(directory, target):
-            
+
             abs_directory = os.path.abspath(directory)
             abs_target = os.path.abspath(target)
-        
+
             prefix = os.path.commonprefix([abs_directory, abs_target])
-            
+
             return prefix == abs_directory
-        
+
         def safe_extract(tar, path=".", members=None, *, numeric_owner=False):
-        
+
             for member in tar.getmembers():
                 member_path = os.path.join(path, member.name)
                 if not is_within_directory(path, member_path):
                     raise Exception("Attempted Path Traversal in Tar File")
-        
-            tar.extractall(path, members, numeric_owner=numeric_owner) 
-            
-        
+
+            tar.extractall(path, members, numeric_owner=numeric_owner)
+
         safe_extract(f, tmp_path)
     os.chdir(tmp_path)
     yield {
@@ -190,25 +190,25 @@ def brownie_project(tmp_path):
             "testdata", "brownie_project", "artifacts.tar.gz"
         )
     ) as f:
+
         def is_within_directory(directory, target):
-            
+
             abs_directory = os.path.abspath(directory)
             abs_target = os.path.abspath(target)
-        
+
             prefix = os.path.commonprefix([abs_directory, abs_target])
-            
+
             return prefix == abs_directory
-        
+
         def safe_extract(tar, path=".", members=None, *, numeric_owner=False):
-        
+
             for member in tar.getmembers():
                 member_path = os.path.join(path, member.name)
                 if not is_within_directory(path, member_path):
                     raise Exception("Attempted Path Traversal in Tar File")
-        
-            tar.extractall(path, members, numeric_owner=numeric_owner) 
-            
-        
+
+            tar.extractall(path, members, numeric_owner=numeric_owner)
+
         safe_extract(f, tmp_path)
     os.chdir(tmp_path)
     yield {
@@ -237,25 +237,25 @@ def dapptools_project(tmp_path):
             "testdata", "dapptools_project", "artifacts.tar.gz"
         )
     ) as f:
+
         def is_within_directory(directory, target):
-            
+
             abs_directory = os.path.abspath(directory)
             abs_target = os.path.abspath(target)
-        
+
             prefix = os.path.commonprefix([abs_directory, abs_target])
-            
+
             return prefix == abs_directory
-        
+
         def safe_extract(tar, path=".", members=None, *, numeric_owner=False):
-        
+
             for member in tar.getmembers():
                 member_path = os.path.join(path, member.name)
                 if not is_within_directory(path, member_path):
                     raise Exception("Attempted Path Traversal in Tar File")
-        
-            tar.extractall(path, members, numeric_owner=numeric_owner) 
-            
-        
+
+            tar.extractall(path, members, numeric_owner=numeric_owner)
+
         safe_extract(f, tmp_path)
     os.chdir(tmp_path)
     yield {
@@ -279,25 +279,25 @@ def scribble_project(tmp_path):
             "testdata", "scribble_project", "artifacts.tar.gz"
         )
     ) as f:
+
         def is_within_directory(directory, target):
-            
+
             abs_directory = os.path.abspath(directory)
             abs_target = os.path.abspath(target)
-        
+
             prefix = os.path.commonprefix([abs_directory, abs_target])
-            
+
             return prefix == abs_directory
-        
+
         def safe_extract(tar, path=".", members=None, *, numeric_owner=False):
-        
+
             for member in tar.getmembers():
                 member_path = os.path.join(path, member.name)
                 if not is_within_directory(path, member_path):
                     raise Exception("Attempted Path Traversal in Tar File")
-        
-            tar.extractall(path, members, numeric_owner=numeric_owner) 
-            
-        
+
+            tar.extractall(path, members, numeric_owner=numeric_owner)
+
         safe_extract(f, tmp_path)
     os.chdir(tmp_path)
     yield {
@@ -325,25 +325,25 @@ def truffle_echidna_project(tmp_path, request):
             f"artifacts_{project_type}.tar.gz",
         )
     ) as f:
+
         def is_within_directory(directory, target):
-            
+
             abs_directory = os.path.abspath(directory)
             abs_target = os.path.abspath(target)
-        
+
             prefix = os.path.commonprefix([abs_directory, abs_target])
-            
+
             return prefix == abs_directory
-        
+
         def safe_extract(tar, path=".", members=None, *, numeric_owner=False):
-        
+
             for member in tar.getmembers():
                 member_path = os.path.join(path, member.name)
                 if not is_within_directory(path, member_path):
                     raise Exception("Attempted Path Traversal in Tar File")
-        
-            tar.extractall(path, members, numeric_owner=numeric_owner) 
-            
-        
+
+            tar.extractall(path, members, numeric_owner=numeric_owner)
+
         safe_extract(f, tmp_path)
     os.chdir(tmp_path)
     yield {

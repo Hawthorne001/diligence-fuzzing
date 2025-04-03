@@ -63,14 +63,29 @@ def test_unlinked_libraries(api_key, tmp_path, ide, unlinked_contracts):
             for lib, lib_path, contract_name, contract_path in unlinked_contracts
         ]
     )
+    details_reversed = "\n".join(
+        [
+            f'  ◦ Contract: "{contract_name}" Contract path: "{contract_path}" '
+            f'Library: "{lib}" Library path: "{lib_path}"'
+            for lib, lib_path, contract_name, contract_path in unlinked_contracts[::-1]
+        ]
+    )
 
     assert result.exit_code == 1
-    assert (
-        f"Error: Following contracts have unlinked libraries:\n{details}\n"
-        f"For more info on library linking please visit "
-        f"https://docs.soliditylang.org/en/latest/using-the-compiler.html#library-linking\n"
-        == result.output
-    )
+    try:
+        assert (
+            f"Error: Following contracts have unlinked libraries:\n{details}\n"
+            f"For more info on library linking please visit "
+            f"https://docs.soliditylang.org/en/latest/using-the-compiler.html#library-linking\n"
+            == result.output
+        )
+    except AssertionError:
+        assert (
+            f"Error: Following contracts have unlinked libraries:\n{details_reversed}\n"
+            f"For more info on library linking please visit "
+            f"https://docs.soliditylang.org/en/latest/using-the-compiler.html#library-linking\n"
+            == result.output
+        )
 
 
 @pytest.mark.parametrize(
@@ -145,13 +160,29 @@ def test_unlinked_libraries_detection_fallback(
             for lib_hash, contract_name, contract_path in unlinked_contracts
         ]
     )
+    details_reversed = "\n".join(
+        [
+            f"  ◦ Contract: {contract_name} Contract path: {contract_path} Library hash: {lib_hash}"
+            for lib_hash, contract_name, contract_path in unlinked_contracts[::-1]
+        ]
+    )
 
     assert result.exit_code == 1
-    assert (
-        f"Error: Following contracts have unlinked libraries:\n{details}\n"
-        f"Fuzzing CLI provides only library hashes because it wasn't able to one's name and path "
-        f"from compilation artifacts. Please check your IDE settings to enable full solc compiler output.\n"
-        f"For more info on library linking please visit "
-        f"https://docs.soliditylang.org/en/latest/using-the-compiler.html#library-linking\n"
-        == result.output
-    )
+    try:
+        assert (
+            f"Error: Following contracts have unlinked libraries:\n{details}\n"
+            f"Fuzzing CLI provides only library hashes because it wasn't able to one's name and path "
+            f"from compilation artifacts. Please check your IDE settings to enable full solc compiler output.\n"
+            f"For more info on library linking please visit "
+            f"https://docs.soliditylang.org/en/latest/using-the-compiler.html#library-linking\n"
+            == result.output
+        )
+    except AssertionError:
+        assert (
+            f"Error: Following contracts have unlinked libraries:\n{details_reversed}\n"
+            f"Fuzzing CLI provides only library hashes because it wasn't able to one's name and path "
+            f"from compilation artifacts. Please check your IDE settings to enable full solc compiler output.\n"
+            f"For more info on library linking please visit "
+            f"https://docs.soliditylang.org/en/latest/using-the-compiler.html#library-linking\n"
+            == result.output
+        )

@@ -1,6 +1,6 @@
 -r requirements.txt
 
-deepdiff==6.3.0
+deepdiff==8.6.1
 
 bumpversion==0.6.0
 
